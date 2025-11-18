@@ -18,10 +18,10 @@ function App() {
         </a>
       </div>
       <p>🟡 Bitcoin: {btc ? `$${btc}` : "Cargando..."}</p>
-      <p>Ethereum: {eth ? `$${eth}` : "Cargando..."}</p>
-      <p>Ripple: {xrp ? `$${xrp}` : "Cargando..."}</p>
-      <p>Hedera: {hbar ? `$${hbar}` : "Cargando..."}</p>
-      <p>Stellar lummens: {xlm ? `$${xlm}` : "Cargando..."}</p>
+      <p>🔷 Ethereum: {eth ? `$${eth}` : "Cargando..."}</p>
+      <p>🟢 Ripple: {xrp ? `$${xrp}` : "Cargando..."}</p>
+      <p>🟣 Hedera: {hbar ? `$${hbar}` : "Cargando..."}</p>
+      <p>🔵 Stellar: {xlm ? `$${xlm}` : "Cargando..."}</p>
       <p className="read-the-docs">
         Solo a titulo informativo, contiene un delay de 20" no es aconsejable
         operar siguendo estos indices de precios.
