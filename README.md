@@ -19,16 +19,16 @@ git clone https://github.com/BrunoCocco/PreciosAlts.git
 
 Instala las dependencias:
 
-cd nombre-del-repositorio
+cd PreciosAlts
 npm install
 
 
 Inicia la aplicación localmente:
 
-npm start
+npm run dev
 
 
-La app se abrirá en http://localhost:3000.
+La app se abrirá en http://localhost:5760. || " :Origer "
 
 Despliegue
 
