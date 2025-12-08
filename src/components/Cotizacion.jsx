@@ -22,9 +22,9 @@ function Cotizacion() {
       <h3>⏣ | Hedera: {hbar ? `$${hbar}` : "Cargando..."}</h3>
       <h3>✦ | Stellar: {xlm ? `$${xlm}` : "Cargando..."}</h3>
       <p className="read-the-docs">
-        Solo a titulo informativo, contiene un delay de 20" no es aconsejable
-        operar siguendo estos indices de precios.
+       "No importa cuántas veces caigas, lo que importa es cuántas veces te levantas. El poder está en tu determinación, no en la perfección."
       </p>
+      <p>Disciplina(r)</p>
     </>
   );
 }
