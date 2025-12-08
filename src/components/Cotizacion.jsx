@@ -24,7 +24,7 @@ function Cotizacion() {
       <p className="read-the-docs">
        "No importa cuántas veces caigas, lo que importa es cuántas veces te levantas. El poder está en tu determinación, no en la perfección."
       </p>
-      <p>Disciplina(r)</p>
+      <p><code>Disciplina </code>(r)</p>
     </>
   );
 }
