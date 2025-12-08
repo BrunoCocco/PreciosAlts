@@ -1,16 +1,35 @@
-# React + Vite
+Plataforma Personal de Control de Precios de Criptomonedas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es un proyecto personal para monitorear los precios de criptomonedas de interés en tiempo real. Utiliza React para el frontend y la API de Coinbase para obtener los datos de precios. La aplicación está desplegada en Vercel.
 
-Currently, two official plugins are available:
+Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Frontend: React
 
-## React Compiler
+API: Coinbase API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Despliegue: Vercel
 
-## Expanding the ESLint configuration
+Instalación
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Clona el repositorio:
+
+git clone https://github.com/BrunoCocco/PreciosAlts.git
+
+
+Instala las dependencias:
+
+cd nombre-del-repositorio
+npm install
+
+
+Inicia la aplicación localmente:
+
+npm start
+
+
+La app se abrirá en http://localhost:3000.
+
+Despliegue
+
+La app está desplegada automáticamente en Vercel. Cualquier cambio que subas a GitHub se reflejará en Vercel.
