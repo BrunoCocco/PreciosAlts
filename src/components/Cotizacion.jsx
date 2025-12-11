@@ -12,7 +12,7 @@ function Cotizacion() {
       <div>
         <h1>
           <code>
-            Coi<u>nMarket Tr</u>uck{" "}
+            Disiplina y perseveracia !!
           </code>
         </h1>
       </div>
