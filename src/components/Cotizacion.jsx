@@ -12,7 +12,7 @@ function Cotizacion() {
       <div>
         <h1>
           <code>
-            Disiplina y perseveracia !!
+            Disciplina y perseveracia !!
           </code>
         </h1>
       </div>
