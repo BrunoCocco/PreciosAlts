@@ -22,7 +22,7 @@ function Cotizacion() {
       <h3>⏣ | Hedera: {hbar ? `$${hbar}` : "Cargando..."}</h3>
       <h3>✦ | Stellar: {xlm ? `$${xlm}` : "Cargando..."}</h3>
       <p className="read-the-docs">
-       "No importa cuántas veces caigas, lo que importa es cuántas veces te levantas. El poder está en tu determinación, no en la perfección."
+El poder está en tu determinación, no en la perfección."
       </p>
       <p><code>Disc<u>iplina</u></code>(r)</p>
     </>
