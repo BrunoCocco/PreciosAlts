@@ -1,3 +1,4 @@
+// Cotizacion.jsx
 import usePrice from "../hooks/CryptoPrice";
 
 function Cotizacion() {
@@ -6,7 +7,7 @@ function Cotizacion() {
   const xrp = usePrice("XRP");
   const hbar = usePrice("HBAR");
   const xlm = usePrice("XLM");
-  const velo = usePrice("VELO"); // 👈 agregá esto
+  const velo = usePrice("VELO"); // ✅ ahora trae Velo Protocol vía CoinGecko
 
   return (
     <>
@@ -24,13 +25,16 @@ function Cotizacion() {
       <h3>⏣ | Hedera: {hbar ? `$${hbar}` : "Cargando..."}</h3>
       <h3>✦ | Stellar: {xlm ? `$${xlm}` : "Cargando..."}</h3>
 
-      <h3>V | Velo: {velo ? `$${velo}` : "Cargando..."}</h3>
+      <h3>V | Velo Protocol (Stellar): {velo ? `$${velo}` : "Cargando..."}</h3>
 
       <p className="read-the-docs">
         El poder está en tu determinación, no en la perfección.
       </p>
       <p>
-        <code>Disc<u>iplina</u></code>(r)
+        <code>
+          Disc<u>iplina</u>
+        </code>
+        (r)
       </p>
     </>
   );
