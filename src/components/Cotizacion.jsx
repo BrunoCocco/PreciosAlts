@@ -6,6 +6,7 @@ function Cotizacion() {
   const xrp = usePrice("XRP");
   const hbar = usePrice("HBAR");
   const xlm = usePrice("XLM");
+  const velo = usePrice("VELO"); // 👈 agregá esto
 
   return (
     <>
@@ -16,15 +17,21 @@ function Cotizacion() {
           </code>
         </h1>
       </div>
+
       <h3>₿ | Bitcoin: {btc ? `$${btc}` : "Cargando..."}</h3>
       <h3>Ξ | Ethereum: {eth ? `$${eth}` : "Cargando..."}</h3>
       <h3>✕ | Ripple: {xrp ? `$${xrp}` : "Cargando..."}</h3>
       <h3>⏣ | Hedera: {hbar ? `$${hbar}` : "Cargando..."}</h3>
       <h3>✦ | Stellar: {xlm ? `$${xlm}` : "Cargando..."}</h3>
+
+      <h3>V | Velo: {velo ? `$${velo}` : "Cargando..."}</h3>
+
       <p className="read-the-docs">
-El poder está en tu determinación, no en la perfección."
+        El poder está en tu determinación, no en la perfección.
       </p>
-      <p><code>Disc<u>iplina</u></code>(r)</p>
+      <p>
+        <code>Disc<u>iplina</u></code>(r)
+      </p>
     </>
   );
 }
