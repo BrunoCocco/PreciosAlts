@@ -25,7 +25,7 @@ function Cotizacion() {
       <h3>⏣ | Hedera: {hbar ? `$${hbar}` : "Cargando..."}</h3>
       <h3>✦ | Stellar: {xlm ? `$${xlm}` : "Cargando..."}</h3>
 
-      <h3>V | Velo Protocol (Stellar): {velo ? `$${velo}` : "Cargando..."}</h3>
+      <h3>V | Velo: {velo ? `$${velo}` : "Cargando..."}</h3>
 
       <p className="read-the-docs">
         El poder está en tu determinación, no en la perfección.
