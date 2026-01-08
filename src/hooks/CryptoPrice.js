@@ -7,13 +7,16 @@ const COINGECKO_IDS = {
   XRP: "ripple",
   HBAR: "hedera-hashgraph",
   XLM: "stellar",
-  VELO: "velo", // ✅ Velo Protocol (no confundir con Velodrome)
+  VELO: "velo",         // ✅ Velo Protocol
+  SHX: "stronghold",    // ✅ Stronghold (SHX)
 };
 
 function formatUsd(value) {
   const n = typeof value === "number" ? value : Number(value);
   if (!Number.isFinite(n)) return null;
-  return n.toLocaleString("en-US");
+
+  // 👇 mínimo tweak: evita que tokens baratos queden como "0"
+  return n.toLocaleString("en-US", { maximumFractionDigits: 8 });
 }
 
 async function fetchFromCoinbase(symbol) {
@@ -29,6 +32,7 @@ async function fetchFromCoinbase(symbol) {
 async function fetchFromCoinGecko(symbol) {
   const id = COINGECKO_IDS[symbol];
   if (!id) throw new Error("CoinGecko: id no mapeado");
+
   const res = await fetch(
     `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(
       id
@@ -49,8 +53,8 @@ function usePrice(symbol = "BTC") {
     const sym = String(symbol || "BTC").toUpperCase();
 
     try {
-      // VELO: forzamos CoinGecko para asegurar "Velo Protocol"
-      if (sym === "VELO") {
+      // ✅ VELO y SHX: forzamos CoinGecko para evitar líos de disponibilidad en Coinbase
+      if (sym === "VELO" || sym === "SHX") {
         setPrecio(await fetchFromCoinGecko(sym));
         return;
       }
