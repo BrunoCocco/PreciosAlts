@@ -15,7 +15,7 @@ function Cotizacion() {
       <div>
         <h1>
           <code>
-            pe<u>rseveran</u>cia !!
+            Pe<u>rseveran</u>cia !!
           </code>
         </h1>
       </div>
