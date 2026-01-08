@@ -8,7 +8,7 @@ function Cotizacion() {
   const hbar = usePrice("HBAR");
   const xlm = usePrice("XLM");
   const velo = usePrice("VELO"); // ✅ ahora trae Velo Protocol vía CoinGecko
-
+  const shx = usePrice("SHX");   // ✅ Stronghold (SHX)
 
   return (
     <>
