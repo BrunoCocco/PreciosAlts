@@ -22,8 +22,8 @@ function Cotizacion() {
 
       <h3>₿ | Bitcoin: {btc ? `$${btc}` : "Cargando..."}</h3>
       <h3>Ξ | Ethereum: {eth ? `$${eth}` : "Cargando..."}</h3>
-      <h3>✕ | Ripple: {xrp ? `$${xrp}` : "Cargando..."}</h3>
       <h3>⏣ | Hedera: {hbar ? `$${hbar}` : "Cargando..."}</h3>
+      <h3>✕ | Ripple: {xrp ? `$${xrp}` : "Cargando..."}</h3>
       <h3>✦ | Stellar: {xlm ? `$${xlm}` : "Cargando..."}</h3>
 
       <h3>V | Velo: {velo ? `$${velo}` : "Cargando..."}</h3>
