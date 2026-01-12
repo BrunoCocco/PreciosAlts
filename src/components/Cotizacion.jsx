@@ -29,7 +29,7 @@ function Cotizacion() {
       <h3>V | Velo: {velo ? `$${velo}` : "Cargando..."}</h3>
 
       <p className="read-the-docs">
-        El poder está en tu determinación, no en la perfección.
+        El poder está <b>en tu determinación</b>, no en la perfección.
       </p>
       <p>
         <code>
