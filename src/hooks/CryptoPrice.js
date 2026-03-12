@@ -1,86 +1,88 @@
-// ../hooks/CryptoPrice.js
-import { useState, useEffect, useCallback } from "react";
+// hooks/useCryptoPrices.js
+import { useState, useEffect } from "react";
 
-const COINGECKO_IDS = {
+/*
+Lista de cryptos que queremos mostrar.
+
+La clave (BTC, ETH...) es la que usaremos en la UI.
+El valor es el ID que usa CoinGecko.
+*/
+const COINS = {
   BTC: "bitcoin",
   ETH: "ethereum",
   XRP: "ripple",
   HBAR: "hedera-hashgraph",
   XLM: "stellar",
-  VELO: "velo", // ✅ Velo Protocol (no confundir con Velodrome)
-  SHX: "stronghold-token", // ✅ Stronghold (SHX) -> API ID correcto en CoinGecko
+  VELO: "velo",
+  SHX: "stronghold-token",
 };
 
-function formatUsd(value) {
-  const n = typeof value === "number" ? value : Number(value);
-  if (!Number.isFinite(n)) return null;
-  return n.toLocaleString("en-US");
-}
+function CryptoPrices() {
+  // estado donde guardaremos todas las cryptos
+  const [prices, setPrices] = useState({});
 
-async function fetchFromCoinbase(symbol) {
-  const res = await fetch(`https://api.coinbase.com/v2/prices/${symbol}-USD/spot`);
-  if (!res.ok) throw new Error(`Coinbase HTTP ${res.status}`);
-  const data = await res.json();
-  const amount = data?.data?.amount;
-  const formatted = formatUsd(amount);
-  if (!formatted) throw new Error("Coinbase: amount inválido");
-  return formatted;
-}
-
-async function fetchFromCoinGecko(symbol) {
-  const id = COINGECKO_IDS[symbol];
-  if (!id) throw new Error("CoinGecko: id no mapeado");
-  const res = await fetch(
-    `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(
-      id
-    )}&vs_currencies=usd`
-  );
-  if (!res.ok) throw new Error(`CoinGecko HTTP ${res.status}`);
-  const data = await res.json();
-  const usd = data?.[id]?.usd;
-  const formatted = formatUsd(usd);
-  if (!formatted) throw new Error("CoinGecko: usd inválido");
-  return formatted;
-}
-
-function usePrice(symbol = "BTC") {
-  const [precio, setPrecio] = useState(null);
-
-  const fetchPrecio = useCallback(async () => {
-    const sym = String(symbol || "BTC").toUpperCase();
-
+  async function fetchPrices() {
     try {
-      // VELO: forzamos CoinGecko para asegurar "Velo Protocol"
-      if (sym === "VELO") {
-        setPrecio(await fetchFromCoinGecko(sym));
-        return;
+      // construimos lista de IDs para CoinGecko
+      const ids = Object.values(COINS).join(",");
+
+      const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&price_change_percentage=1y`;
+
+      const res = await fetch(url);
+
+      if (!res.ok) {
+        throw new Error("Error API");
       }
 
-      // Primero Coinbase
-      setPrecio(await fetchFromCoinbase(sym));
-    } catch (err) {
-      // Fallback a CoinGecko si tenemos mapeo
-      try {
-        if (COINGECKO_IDS[sym]) {
-          setPrecio(await fetchFromCoinGecko(sym));
-          return;
+      const data = await res.json();
+
+      /*
+      Convertimos el array que devuelve CoinGecko
+      en un objeto más fácil de usar.
+
+      Antes:
+      [
+        {id:"bitcoin", current_price:...}
+      ]
+
+      Después:
+      {
+        BTC: {price:..., change24h:...}
+      }
+      */
+
+      const result = {};
+
+      data.forEach((coin) => {
+        const symbol = Object.keys(COINS).find(
+          (key) => COINS[key] === coin.id
+        );
+
+        if (symbol) {
+          result[symbol] = {
+            price: coin.current_price,
+            change24h: coin.price_change_percentage_24h,
+            change1y: coin.price_change_percentage_1y_in_currency,
+          };
         }
-      } catch (fallbackErr) {
-        console.error(`❌ Error obteniendo precio de ${sym}:`, fallbackErr);
-        return;
-      }
+      });
 
-      console.error(`❌ Error obteniendo precio de ${sym}:`, err);
+      setPrices(result);
+    } catch (err) {
+      console.error("Error obteniendo precios:", err);
     }
-  }, [symbol]);
+  }
 
   useEffect(() => {
-    fetchPrecio();
-    const interval = setInterval(fetchPrecio, 20000);
-    return () => clearInterval(interval);
-  }, [fetchPrecio]);
+    fetchPrices();
 
-  return precio;
+    // refrescar cada 20 segundos
+    const interval = setInterval(fetchPrices, 20000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return prices;
 }
 
-export default usePrice;
+export default CryptoPrices;

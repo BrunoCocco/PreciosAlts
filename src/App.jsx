@@ -1,7 +1,6 @@
 import "./App.css";
 import Cotizacion from "./components/Cotizacion";
 
-
 function App() {
   return (
     <>
